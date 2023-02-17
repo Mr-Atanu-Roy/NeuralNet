@@ -45,6 +45,15 @@ To run this project, you will need to add the following environment variables to
 
 For the `API_KEY` go to OpenAi's webiste : https://openai.com/api/  from there signup (or login if you have account). Then generate an API key and put it in the .env file
 
+### For Sending Email
+
+`EMAIL_HOST_USER = 'email address from which email will be send'`
+
+`EMAIL_HOST_PASSWORD = 'its app password'`
+
+Note : You have to create app password for the email you are using in `EMAIL_HOST_USER` and put it in `EMAIL_HOST_PASSWORD`
+
+
 ## Installation
 
 Create a folder and open terminal and install this project by
