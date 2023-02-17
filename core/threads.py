@@ -5,7 +5,8 @@ import pyttsx3
 
 class Speak(threading.Thread):
     
-    def __init__(self, answer):
+    def __init__(self, gender, answer):
+        self.gender = gender
         self.answer = answer
         threading.Thread.__init__(self)
         
@@ -13,8 +14,13 @@ class Speak(threading.Thread):
         try:
             engine = pyttsx3.init('sapi5')
             voices = engine.getProperty('voices')
-            engine.setProperty('voice', voices[1].id)
-            engine.setProperty('rate', 193)
+            if self.gender == "female":
+                engine.setProperty('voice', voices[1].id)
+                engine.setProperty('rate', 189)
+            else:
+                engine.setProperty('voice', voices[0].id)
+                engine.setProperty('rate', 191)
+                
             engine.say(self.answer)
             engine.runAndWait()
         except Exception as e:

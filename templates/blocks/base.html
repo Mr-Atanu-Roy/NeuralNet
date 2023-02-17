@@ -16,23 +16,30 @@
     
     {% block styles %}{% endblock styles %} 
 </head>
-<body class="bg-slate-800">
-    <header class="stickty top-0 left-0 w-full py-4 px-5 shadow-lg bg-slate-600 z-10">
+<body style="background-color: #14191D;">
+    <header class="w-full p-5 shadow-lg z-10">
         <nav class="flex items-center justify-between">
             <div id="logo">
                 <a href="/"><img src="/static/images/full-logo-white-sm.png" class="w-40" alt="NEURALNET" srcset=""></a>
             </div>
             <ul class="capitalize flex items-center justify-center text-white">
-                <li class="cursor-pointer px-2 text-xl"><a href="{% url 'home' %}" class="no-underline f-medium">Home</a></li>
-                <li class="cursor-pointer px-2 text-xl"><a href="{% url 'chitchat' %}" class="no-underline f-medium">ChitChat</a></li>
-                <li class="cursor-pointer px-2 text-xl"><a href="{% url 'codegenie' %}" class="no-underline f-medium">CodeGenie</a></li>
-                <li class="cursor-pointer px-2 text-xl"><a href="{% url 'artiflex' %}" class="no-underline f-medium">ArtiFlex</a></li>
+                <li class="cursor-pointer px-2 text-xl"><a href="{% url 'home' %}" class="no-underline f-medium {% if request.path == "/" %}p-color{% endif %} ">Home</a></li>
+
+                <li class="cursor-pointer px-2 text-xl"><a href="{% url 'chitchat' %}" class="no-underline f-medium {% if request.path == "/product/chitchat/" %}p-color{% endif %} ">ChitChat</a></li>
+
+                <li class="cursor-pointer px-2 text-xl"><a href="{% url 'codegenie' %}" class="no-underline f-medium {% if request.path == "/product/codegenie/" %}p-color{% endif %} ">CodeGenie</a></li>
+
+                <li class="cursor-pointer px-2 text-xl"><a href="{% url 'artiflex' %}" class="no-underline f-medium {% if request.path == "/product/artiflex/" %}p-color{% endif %} ">ArtiFlex</a></li>
+
                 {% if user.is_authenticated %}
-                <li class="cursor-pointer px-2 text-xl"><a href="{% url 'profile' %}" class="no-underline f-medium">dashboard</a></li>
+                <li class="cursor-pointer px-2 text-xl"><a href="{% url 'profile' %}" class="no-underline f-medium {% if request.path == "/auth/profile/" %}p-color{% endif %} ">dashboard</a></li>
+
                 <li class="cursor-pointer px-2 text-xl"><a href="{% url 'logout' %}" class="no-underline f-medium">logout</a></li>
+
                 {% else %}
-                <li class="cursor-pointer px-2 text-xl"><a href="{% url 'login' %}" class="no-underline f-medium">login</a></li>
-                <li class="cursor-pointer px-2 text-xl"><a href="{% url 'signin' %}" class="no-underline f-medium">signin</a></li>
+                <li class="cursor-pointer px-2 text-xl"><a href="{% url 'login' %}" class="no-underline f-medium {% if request.path == "/auth/login/" %}p-color{% endif %} ">login</a></li>
+
+                <li class="cursor-pointer px-2 text-xl"><a href="{% url 'signin' %}" class="no-underline f-medium {% if request.path == "/auth/signin/" %}p-color{% endif %} ">signin</a></li>
                 {% endif %}
             </ul>
         </nav>

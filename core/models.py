@@ -5,11 +5,12 @@ from accounts.utils import BaseModel
 
 User = get_user_model()
 
+
 gender_choices = (
     ("male", "Male"),
     ("female", "Female"),
-    ("none", "Not Specify"),
 )
+
 # Create your models here.
 
 class ChitChat(BaseModel):
@@ -17,7 +18,7 @@ class ChitChat(BaseModel):
     name = models.CharField(max_length=255, default="Synthia")
     bot_type = models.CharField(max_length=255, default="ai-assistant")
     age = models.IntegerField(default=0)
-    gender = models.CharField(max_length=255, default="none", choices=gender_choices)
+    gender = models.CharField(max_length=255, choices=gender_choices, default="male")
     prompt = models.TextField(default="The following is a conversation with an AI assistant whose name is Synthia. The assistant is helpful, creative, clever, and very friendly")
     
     def __str__(self):

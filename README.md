@@ -3,7 +3,7 @@
 There are mainly 3 functionalitys of this project. Their names with functionalities are given below :
 
 ### ChitChat
-An AI chatbot which can answer all your queries. You can ask it anything you want. But it must be relivant. After the respose is generated, the AI will also read it for you. Voice search option is also available. You can just talk to it like you talk to other persons
+An AI chatbot which can answer all your queries. You can ask it anything you want. But it must be relivant. After the respose is generated, the AI will also read it for you. Voice search option is also available. You can just talk to it like you talk to other persons. After you sign up, you will be able to make customizable bots as per your requirments.There are many options like age, name, bot-type, gender which are customizable in this section.
 
 ### CodeGenie
 An AI code generator, which generate codes as per your instructions and selected languages. 
@@ -24,7 +24,7 @@ Currently supported languages are -
 An AI that can generate images as per your given prompt. I can generate anything, even if such thing does not exists. If it does not exists then it will generate it arificially.
 Currently it generated 3 images for each given prompt and each image is of size 256 x 256 pixels
 
-Authentication system is also added, which included signin, login, logout, email verification, reset password. user can access all the products(ChitChat, Artiflex and CodeGenie) only after signing up.
+Authentication system is also added, which included signin, login, logout, email verification, reset password. user can access all the products(ChitChat, Artiflex and CodeGenie) only after signing up. After you register you will be able to customize the ChitCht bot. There are many options like age, name, bot-type, gender which are customizable in this section
 
 ## Tech Stack
 

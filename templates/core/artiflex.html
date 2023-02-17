@@ -3,6 +3,15 @@
 
 {% block title %}ArtiFlex | NeuralNet{% endblock title %}
 
+{% block styles %}
+
+<style>
+    header {
+        position: sticky !important;
+    }
+</style>
+
+{% endblock styles %}
 
 {% block body %}
 
@@ -11,10 +20,10 @@
         <form action="" method="post" class="mx-auto">
             {% csrf_token %}
             <input name="query" value="{{query}}" type="text"
-                class="mx-auto p-3 h-12 border-0 outline-none rounded-md shadow-lg bg-slate-600 text-white text-lg"
-                style="width: 720px;" autocomplete="off" placeholder="Get image for anything">
+                class="mx-auto p-3 h-14 border-0 outline-none rounded-md shadow-lg text-white text-lg"
+                style="width: 720px; background-color: #1C1C24;" autocomplete="off" placeholder="Get image for anything">
 
-            <button type="submit" class="relative right-8"><i class="fa fa-paper-plane text-white"></i></button>
+            <button type="submit" class="relative right-8"><i class="fa fa-paper-plane" style="color: #28bfc0;"></i></button>
         </form>
     </div>
 

@@ -20,6 +20,8 @@ from core.models import ChitChat
 
 from .utils import *
 
+from core.prompts import *
+
 
 # Create your views here.
 
@@ -51,8 +53,7 @@ def login(request):
                     if checkUser:
                         user = auth.authenticate(email = email, password = password)
                         if user is not None:
-                            is_verified = checkUser.is_verified
-                            if is_verified:
+                            if checkUser.is_verified:
                                 auth.login(request, user)
                                 messages.success(request, "you are successfully logged in")
                                 if request.GET.get('next') != None:
@@ -148,8 +149,81 @@ def logout(request):
 
 @login_required(login_url="/auth/login")
 def profile(request):
-    
-    return render(request, './accounts/profile.html')
+    try:
+        fname = lname = age = name = bot = ""
+        context = {
+            "fname" : fname,
+            "lname" : lname,
+            "name" : name,
+            "age" : age,
+            "bot" : bot,
+            "bot_types" : Bots().get_bots_type(),
+        }
+        
+        #gettings the user instance from User model
+        getUser = User.objects.filter(email=request.user).first()
+        fname = getUser.first_name
+        lname = getUser.last_name
+        
+        #gettings the chatbot instance of user from ChitChat model
+        getBot = ChitChat.objects.filter(user = getUser).first()
+        name = getBot.name
+        bot = getBot.bot_type
+        age = getBot.age
+        
+        if request.method == "POST" and "form1" in request.POST:
+            fname = request.POST.get("fname")
+            lname = request.POST.get("lname")
+
+            if fname != "" and lname != "":
+                getUser.first_name = fname
+                getUser.last_name = lname
+                getUser.save()
+                messages.success(request, "Account updated successfully")
+            else:
+                messages.error(request, "First and Last name can't be blank")
+                
+        if request.method == "POST" and "form2" in request.POST:
+            name = request.POST.get("name")
+            age = int(request.POST.get("age"))
+            bot = request.POST.get("bot")
+            
+            if age == "" or bot == "ai-assistant" : age = 0
+            
+            if name != "":
+                if bot != "ai-assistant" and age < 5:
+                    messages.error(request, "Age must be greater that 5 for the selected bot type")
+                else:
+                    if bot == "ai-assistant" or bot == "girlfriend" or bot == "female-friend":
+                        gender = "female"
+                    else:
+                        gender = "male"
+                    
+                    createBot = Bots(name, age, bot)
+                    bot_prompt = createBot.make_bot(bot)
+                    
+                    getBot.name = name
+                    getBot.age = age
+                    getBot.bot_type = bot
+                    getBot.gender = gender
+                    getBot.prompt = bot_prompt
+                    
+                    getBot.save()
+                    
+                    messages.success(request, "Bot settings updated successfully")
+            else:
+                messages.error(request, "A bot must have bot name")
+                
+        context["fname"] = fname
+        context["lname"] = lname
+        context["name"] = name
+        context["age"] = age
+        context["bot"] = bot
+                
+    except Exception as e:
+        print(e) 
+
+    return render(request, './accounts/profile.html', context)
 
 
 

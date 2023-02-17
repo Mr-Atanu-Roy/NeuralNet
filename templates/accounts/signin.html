@@ -6,8 +6,8 @@
 {% block body %}
 
 
-<section class="w-full flex justify-center items-center mx-auto h-screen">
-    <form action="" method="post" class="bg-slate-600 shadow-lg rounded-lg px-10 py-12 mb-4 w-1/2">
+<section class="section w-full flex justify-center items-center mx-auto min-h-screen" id="signin">
+    <form action="" method="post" class="glass-form shadow-lg px-8 py-14 w-1/2">
         {% csrf_token %}
 
         {% if messages %}
@@ -20,61 +20,66 @@
         {% endfor %}
           
         {% endif %}
-        <div class="grid grid-cols-2 gap-6">
-            <div class="mb-2">
-                <label class="block text-lg f-medium mb-2 capitalize" for="fname">
-                    First Name
-                </label>
-                <input
-                    class="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline"
-                    id="fname" type="text" placeholder="Jhon" name="fname" value="{{fname}}">
+
+        <h2 class="text-4xl f-medium capitalize text-center">Join us in the AI revolution</h2>
+        <div class="my-10">
+            <div class="grid grid-cols-2 gap-6">
+                <div class="mb-2">
+                    <label class="block text-lg f-medium mb-2 capitalize" for="fname">
+                        First Name
+                    </label>
+                    <input
+                        class="appearance-none w-full p-3 leading-tight"
+                        id="fname" type="text" placeholder="Jhon" name="fname" value="{{fname}}">
+                </div>
+                <div class="mb-2">
+                    <label class="block text-lg f-medium mb-2 capitalize" for="lname">
+                        Last Name
+                    </label>
+                    <input
+                        class="appearance-none w-full p-3 leading-tight"
+                        id="lname" type="text" placeholder="Duo" name="lname" value="{{lname}}">
+                </div>
             </div>
-            <div class="mb-2">
-                <label class="block text-lg f-medium mb-2 capitalize" for="lname">
-                    Last Name
-                </label>
-                <input
-                    class="shadow appearance-none border rounded w-full py-2 px-3  mb-3 leading-tight focus:outline-none focus:shadow-outline"
-                    id="lname" type="text" placeholder="Duo" name="lname" value="{{lname}}">
+            <div class="grid grid-cols-1">
+                <div class="mb-4">
+                    <label class="block text-lg f-medium mb-2 capitalize" for="email">
+                        email
+                    </label>
+                    <input
+                        class="sappearance-none w-full p-3 leading-tight"
+                        id="email" type="text" placeholder="Email Address" name="email" value="{{email}}">
+                </div>
+            </div>
+            <div class="grid grid-cols-2 gap-6">
+                <div class="mb-2">
+                    <label class="block text-lg f-medium mb-2 capitalize" for="password">
+                        Password
+                    </label>
+                    <input
+                        class="appearance-none w-full p-3 leading-tight"
+                        id="password" type="password" placeholder="******************" name="password" value="{{password}}">
+                </div>
+                <div class="mb-2">
+                    <label class="block text-lg f-medium mb-2 capitalize" for="cpassword">
+                        Confirm Password
+                    </label>
+                    <input
+                        class="appearance-none w-full p-3 leading-tight"
+                        id="cpassword" type="password" placeholder="******************" name="cpassword" value="{{cpassword}}">
+                </div>
             </div>
         </div>
-        <div class="grid grid-cols-1">
-            <div class="mb-4">
-                <label class="block text-lg f-medium mb-2 capitalize" for="email">
-                    email
-                </label>
-                <input
-                    class="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline"
-                    id="email" type="text" placeholder="Email Address" name="email" value="{{email}}">
-            </div>
-        </div>
-        <div class="grid grid-cols-2 gap-6">
-            <div class="mb-2">
-                <label class="block text-lg f-medium mb-2 capitalize" for="password">
-                    Password
-                </label>
-                <input
-                    class="shadow appearance-none border rounded w-full py-2 px-3  mb-3 leading-tight focus:outline-none focus:shadow-outline"
-                    id="password" type="password" placeholder="******************" name="password" value="{{password}}">
-            </div>
-            <div class="mb-2">
-                <label class="block text-lg f-medium mb-2 capitalize" for="cpassword">
-                    Confirm Password
-                </label>
-                <input
-                    class="shadow appearance-none border rounded w-full py-2 px-3  mb-3 leading-tight focus:outline-none focus:shadow-outline"
-                    id="cpassword" type="password" placeholder="******************" name="cpassword" value="{{cpassword}}">
-            </div>
-        </div>
-        <div class="flex items-center justify-between">
+        <div class="flex-col items-center justify-between">
             <button
-                class="text-white bg-blue-500 transition-all duration-200 hover:bg-blue-700 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline uppercase"
-                type="submit">
-                Log In
+                class="btn1" type="submit">
+                Sign In
             </button>
-            <a class="capitalize inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" href="{% url 'login' %}">
-               Already have an account? LogIn
-            </a>
+        </div>
+        <div class="mt-3 text-center links-box">
+            <a class="capitalize inline-block align-baseline font-bold text-sm" href="{% url 'login' %}">
+                Already have an account? LogIn
+             </a>
         </div>
     </form>
 </section>

@@ -13,6 +13,9 @@ from django.conf import settings
 from django.core.cache.backends.base import DEFAULT_TIMEOUT
 from django.core.cache import cache
 
+from accounts.models import User
+from core.models import ChitChat
+
 CACHE_TTL = getattr(settings, 'CACHE_TTL', DEFAULT_TIMEOUT)
 
 # Load your API key from an environment variable or secret management service
@@ -27,11 +30,20 @@ def home(request):
 @login_required(login_url="/auth/login")
 def chitchat(request):
     try:
-        query = result = ""
+        query = result = bot_name = username = ""
         context = {
             "query" : query,
             "result" : result,
+            "bot_name" : bot_name,
+            "username" : username,
         }
+        
+        getUser = User.objects.filter(email=request.user).first()
+        username = getUser.first_name
+        
+        getBot = ChitChat.objects.filter(user=getUser).first()
+        bot_name = getBot.name
+        
         if request.method == "POST" and "form1" in request.POST:
             query = request.POST.get("query")
             if query == "":
@@ -43,12 +55,10 @@ def chitchat(request):
                 if cache.get(query):
                     result = cache.get(query)                
                 else:
-                    prompt = f"""
-                    The following is a conversation with an AI assistant whose name is Synthia, she is very helpful, creative, clever, and very friendly.
-                    \n\nHuman: {query}
-                    \n\nAI: 
-                    """
-                    
+                    userPrompt = getBot.prompt
+                    prompt = userPrompt+f"""\n\nHuman: {query}
+                    \n\nAI:"""
+                                  
                     response = openai.Completion.create(
                     model="text-davinci-003",
                     prompt=prompt,
@@ -81,11 +91,9 @@ def chitchat(request):
                     if cache.get(query):
                         result = cache.get(query)
                     else:
-                        prompt = f"""
-                        The following is a conversation with an AI assistant whose name is Synthia, she is very helpful, creative, clever, and very friendly.
-                        \n\nHuman: {query}
-                        \n\nAI: 
-                        """
+                        userPrompt = getBot.prompt
+                        prompt = userPrompt+f"""\n\nHuman: {query}
+                        \n\nAI:""" 
                             
                         response = openai.Completion.create(
                         model="text-davinci-003",
@@ -109,7 +117,10 @@ def chitchat(request):
         
         context["query"] = query
         context["result"] = result
-        Speak(result).start()
+        context["bot_name"] = bot_name
+        context["username"] = username
+        
+        Speak(getBot.gender, result).start()
             
     except Exception as e:
         print(e)

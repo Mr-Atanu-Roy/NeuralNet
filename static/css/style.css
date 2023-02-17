@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @import url("https://fonts.googleapis.com/css2?family=Lobster+Two:wght@400;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap");
 * {
@@ -5,6 +6,10 @@
   margin: 0;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
+}
+
+.p-color {
+  color: #28bfc0;
 }
 
 .logo {
@@ -21,9 +26,14 @@
   font-weight: 500;
 }
 
-.f-bold, .square_btn {
+.f-bold, .square_btn, .btn1 {
   font-family: "Ubuntu", serif;
   font-weight: 700;
+}
+
+.section {
+  padding-top: 115px;
+  padding-bottom: 50px;
 }
 
 .square_btn {
@@ -31,16 +41,17 @@
   display: inline-block;
   padding: 1em 2.8em;
   text-decoration: none;
-  color: white;
-  border: solid 2px white;
+  color: #28bfc0;
+  border: solid 3.5px #28bfc0;
   border-radius: 4px;
-  -webkit-transition: .4s;
-  transition: .4s;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 
 .square_btn:hover {
   background: white;
-  color: black;
+  color: #28bfc0;
+  border-color: white;
 }
 
 .response-img {
@@ -93,7 +104,7 @@
   position: relative;
   display: inline-block;
   font-size: 40px;
-  color: #fff;
+  color: #28bfc0;
   text-transform: uppercase;
   -webkit-animation: flip 1.2s infinite;
           animation: flip 1.2s infinite;
@@ -156,5 +167,146 @@
     -webkit-box-shadow: 0 0 0 0 #ffffff;
             box-shadow: 0 0 0 0 #ffffff;
   }
+}
+
+header {
+  background: none;
+  -webkit-backdrop-filter: blur(15px);
+          backdrop-filter: blur(15px);
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.query-box-container,
+.result-box-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.query-box-container {
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: end;
+}
+
+.result-box-container {
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: start;
+}
+
+.query-box,
+.result-box {
+  color: white;
+  max-width: 65%;
+  margin: 5px 0;
+  border-radius: 10px;
+  padding: 0.65rem 1rem;
+}
+
+.query-box {
+  background-color: #28bfc0;
+  border-top-right-radius: 0;
+}
+
+.result-box {
+  background-color: #1f1f26;
+  border-top-left-radius: 0;
+}
+
+.glass-form {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+  -webkit-box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  -webkit-backdrop-filter: blur(4px);
+          backdrop-filter: blur(4px);
+  border: none;
+}
+
+.glass-form label, .glass-form h2 {
+  color: white;
+}
+
+.glass-form input, .glass-form select, .glass-form option {
+  color: white;
+  border-radius: 4px;
+  outline: none;
+  border: none;
+  background: #1c1c24;
+  border: 2px solid #1c1c24;
+}
+
+.glass-form input:focus, .glass-form select:focus, .glass-form option:focus {
+  border: 2px solid #28bfc0;
+}
+
+.btn1 {
+  width: 100%;
+  text-transform: uppercase;
+  display: inline-block;
+  padding: 0.65em 2em;
+  background: white !important;
+  border-radius: 4px;
+  color: #28bfc0 !important;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  border: 2px solid white;
+  text-transform: uppercase;
+}
+
+.btn1:hover {
+  background: none !important;
+  border: 2px solid #28bfc0;
+}
+
+.links-box a {
+  color: #28bfc0;
+  -webkit-transition: all 0.1s ease-in-out;
+  transition: all 0.1s ease-in-out;
+}
+
+.links-box a:hover {
+  color: #0d8a8a;
+}
+
+#login {
+  background: url("/static/images/auth/pexels-eberhard-grossgasteiger-1421903.jpg");
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#signin {
+  background: url("/static/images/auth/pexels-çağatay-demir-2189880.jpg");
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#reset-password {
+  background: url("/static/images/auth/pexels-çağatay-demir-2189880.jpg");
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#email-verify {
+  background: url("/static/images/auth/pexels-çağatay-demir-2189880.jpg");
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#profile {
+  background: url("/static/images/auth/pexels-çağatay-demir-2189880.jpg");
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 /*# sourceMappingURL=style.css.map */

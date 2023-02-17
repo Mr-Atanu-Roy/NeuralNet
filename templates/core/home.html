@@ -6,9 +6,9 @@
 
 <style>
     header {
-        background: none !important;
         box-shadow: none !important;
-        position: fixed !important;
+        background-color: none !important;
+        backdrop-filter: none !important;
     }
 </style>
 
@@ -22,10 +22,12 @@
     </video>
     <div class="center-text w-full h-full relative -top-10 left-0 flex items-center justify-center">
         <div class="text-center text-white">
-            <h1 class="text-8xl f-bold relative top-0 left-0">Neural Net</h1>
-            <h2 class="text-3xl f-medium capitalize">The Future of Personal Assistance is Here</h2>
+            <h1 class="text-8xl f-bold relative top-0 left-0"><span class="p-color text-9xl">N</span>eural Net</h1>
+            <h2 class="text-3xl f-medium capitalize my-1.5">Revolutionize Your Personal <span class="p-color">AI
+                    Experience</span> with us</h2>
             <div class="my-6 flex items-center justify-center">
-                <a href="https://github.com/Mr-Atanu-Roy/NeuralNet" target="_blank" class="square_btn mr-5">Explore More</a>
+                <a href="https://github.com/Mr-Atanu-Roy/NeuralNet" target="_blank" class="square_btn mr-5">Explore
+                    More</a>
                 {% if user.is_authenticated %}
                 <a href="{% url 'chitchat' %}" class="square_btn">ChitChat</a>
                 {% else %}

@@ -1,0 +1,78 @@
+{% extends '../blocks/base.html' %}
+
+{% block title %}NeuralNet | {{request.user.first_name}}{% endblock title %}
+
+
+{% block body %}
+
+
+<section class="section w-full flex justify-center items-center mx-auto min-h-screen" id="profile">
+    <div class="glass-form px-10 py-12 mb-4 w-1/2">
+        <form action="" method="post" class="mb-16">
+            {% csrf_token %}
+            <h2 class="text-4xl f-medium mb-8">Personal Info</h2>
+            <div class="grid grid-cols-2 gap-4">
+                <div class="mb-4">
+                    <label class="block text-lg f-medium mb-2 capitalize" for="fname">
+                        First Name
+                    </label>
+                    <input class="appearance-none w-full p-3 leading-tight" id="fname" type="text"
+                        placeholder="First Name" name="fname" value="{{fname}}">
+                </div>
+                <div class="mb-6">
+                    <label class="block text-lg f-medium mb-2 capitalize" for="lname">
+                        Last Name
+                    </label>
+                    <input class="appearance-none w-full p-3 leading-tight" id="lname" type="text"
+                        placeholder="Last Name" name="lname" value="{{lname}}">
+                </div>
+            </div>
+            <div class="flex items-center justify-between">
+                <button name="form1" class="btn1" type="submit">
+                    Make changes
+                </button>
+            </div>
+        </form>
+        <form action="" method="post">
+            {% csrf_token %}
+            <h2 class="text-4xl f-medium mb-8">Your ChitChat Bot Settings</h2>
+            <div class="grid grid-cols-2 gap-4">
+                <div class="mb-4">
+                    <label class="block text-lg f-medium mb-2 capitalize" for="name">
+                        Bot Name
+                    </label>
+                    <input class="appearance-none w-full p-3 leading-tight" id="name" type="text" placeholder="Synthia"
+                        name="name" value="{{name}}">
+                </div>
+                <div class="mb-4">
+                    <label class="block text-lg f-medium mb-2 capitalize" for="age">
+                        Bot Age
+                    </label>
+                    <input class="appearance-none w-full p-3 leading-tight" id="age" type="text"
+                        placeholder="Give a suitable age" name="age" value="{{age}}">
+                </div>
+            </div>
+            <div class="grid grid-cols-1 gap-4">
+                <div class="mb-6">
+                    <label class="block text-lg f-medium mb-2 capitalize" for="bot-type">
+                        Bot Type
+                    </label>
+                    <select name="bot" id="bot-type" class="w-full p-3 leading-tight uppercase f-medium">
+                        {% for bots in bot_types %}
+                            <option value="{{bots}}" {% if bots == bot %}selected{% endif %}>{{bots}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <div class="flex items-center justify-between">
+                <button name="form2" class="btn1" type="submit">
+                    Make changes
+                </button>
+            </div>
+        </form>
+    </div>
+</section>
+
+{% include "../blocks/dismisable-alert.html" %}
+
+{% endblock body %}

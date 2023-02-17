@@ -13,7 +13,7 @@ class ChitChatAdmin(admin.ModelAdmin):
         }), 
         ("Bot Details", {
             "fields": (
-                ['name', 'age', 'gender', 'prompt']
+                ['name', 'age', 'gender', 'bot_type', 'prompt']
             ),
         }),
     ]
