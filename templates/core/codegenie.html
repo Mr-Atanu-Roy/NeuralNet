@@ -1,0 +1,114 @@
+{% extends '../blocks/base.html' %}
+
+{% block links %}
+
+<script language="javascript" type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/codemirror.min.js"></script>
+<script language="javascript" type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/mode/perl/perl.min.js"></script>
+
+<link rel="stylesheet" type="text/css"
+    href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/codemirror.min.css">
+</link>
+<link rel="stylesheet" type="text/css"
+    href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/theme/abbott.min.css">
+</link>
+
+{% endblock links %}
+
+{% block styles %}
+
+<style>
+    .CodeMirror {
+        height: 100% !important;
+    }
+</style>
+
+{% endblock styles %}
+
+{% block title %}CodeGenie | NeuralNet{% endblock title %}
+
+{% block body %}
+
+<section class="min-h-screen" id="codegenie">
+    {% if messages %}
+    {% for message in messages %}
+    <div id="alert-box"
+        class="{% if message.tags %}{{message.tags}}{% endif %} border px-4 py-3 fixed top-20 right-8 rounded-lg w-2/5 z-50"
+        role="alert">
+        <strong class="capitalize block sm:inline">{{message}}</strong>
+        <span class="absolute top-0 bottom-0 right-0 px-4 py-3" id="close-btn">
+            <svg class="fill-current h-6 w-6 {% if message.tags %}{{message.tags}}{% endif %}" role="button"
+                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                <title>Close</title>
+                <path
+                    d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z" />
+            </svg>
+        </span>
+    </div>
+    {% endfor %}
+    {% endif %}
+
+    <div class="p-8 h-screen">
+        <form method="post" action="" class="h-full">
+            {% csrf_token %}
+            <div class="h-5/6 grid grid-cols-6 gap-4">
+                <div class="col-span-2 h-full">
+                    <textarea id="code-query" name="query"
+                        class="h-full w-full">{{query}}</textarea>
+                </div>
+                <div class="col-span-4 min-h-full">
+                    <textarea id="code-result" class="h-full w-full">{{result | safe}}</textarea>
+                </div>
+            </div>
+
+            <div class="flex items-center justify-between mt-2.5 z-20">
+                <button type="submit"
+                    class="inline-block px-7 py-3 bg-blue-600 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">Submit</button>
+                <select name="language"
+                    class="form-select appearance-none block w-4/12  px-3 py-1.5 text-lg font-normal  text-gray-700  bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                    aria-label="Default select example f-medium">
+                    <option value="python" {% if language == "" or language == "python"%}selected{% endif %}>Python</option>
+                    <option value="javascript" {% if language == "javascript"%}selected{% endif %}>Javascript</option>
+                    <option value="c++" {% if language == "c++"%}selected{% endif %}>C++</option>
+                    <option value="c#" {% if language == "c#"%}selected{% endif %}>C#</option>
+                    <option value="c" {% if language == "c"%}selected{% endif %}>C</option>
+                    <option value="php" {% if language == "php"%}selected{% endif %}>PHP</option>
+                    <option value="java" {% if language == "java"%}selected{% endif %}>Java</option>
+                    <option value="r language" {% if language == "r language"%}selected{% endif %}>R Language</option>
+                    <option value="rust" {% if language == "rust"%}selected{% endif %}>Rust</option>
+                    <option value="ruby" {% if language == "ruby"%}selected{% endif %}>Ruby</option>
+                    <option value="html" {% if language == "html"%}selected{% endif %}>HTML</option>
+                </select>
+            </div>
+        </form>
+    </div>
+
+</section>
+
+<script>
+    var editor1 = CodeMirror.fromTextArea(document.getElementById('code-query'), {
+        lineNumbers: true,
+        mode: 'text/x-perl',
+        theme: 'abbott',
+        lineNumbers: true,
+        matchBrackets: true,
+    });
+
+    var editor2 = CodeMirror.fromTextArea(document.getElementById('code-result'), {
+        lineNumbers: true,
+        mode: 'text/x-perl',
+        theme: 'abbott',
+        lineNumbers: true,
+        matchBrackets: true,
+    });
+    // editor.setOption('theme', 'dracula');
+
+
+    const closeBtn = document.getElementById("close-btn")
+    closeBtn.addEventListener("click", () => {
+        document.getElementById("alert-box").style.display = "none"
+    });
+</script>
+
+{% endblock body %}
