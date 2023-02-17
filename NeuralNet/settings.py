@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     
     #own
     'core',
+    'accounts',
 ]
 
 MIDDLEWARE = [
@@ -110,7 +111,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/kolkata'
 
 USE_I18N = True
 
@@ -130,6 +131,8 @@ STATICFILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+#for custom User Model
+AUTH_USER_MODEL = "accounts.User"
 
 #setting custom messages tags(tailwind css classes)
 MESSAGE_TAGS = {
@@ -151,3 +154,14 @@ CACHES = {
         "KEY_PREFIX": "neuralnet"
     }
 }
+
+#settings for sending mail
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD') #app-password
+
+#settings for SESSION to expire at browser close
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True  

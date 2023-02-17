@@ -24,6 +24,8 @@ Currently supported languages are -
 An AI that can generate images as per your given prompt. I can generate anything, even if such thing does not exists. If it does not exists then it will generate it arificially.
 Currently it generated 3 images for each given prompt and each image is of size 256 x 256 pixels
 
+Authentication system is also added, which included signin, login, logout, email verification, reset password. user can access all the products(ChitChat, Artiflex and CodeGenie) only after signing up.
+
 ## Tech Stack
 
 **Client Side:** HTML, SCSS, TailwindCSS

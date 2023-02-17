@@ -25,7 +25,6 @@
 </div>
 <script>
     const voiceInput = document.getElementById("voice-input")
-    const closeBtn = document.getElementById("close-btn")
     const listeningBox = document.getElementById("listening-box")
     const listeningCloseBtn = document.getElementById("listening-close-btn")
 
@@ -39,10 +38,6 @@
         listeningBox.style.display = "none"
         document.getElementById("overlay").style.display = "none"
         location.reload();
-    });
-
-    closeBtn.addEventListener("click", () => {
-        document.getElementById("alert-box").style.display = "none"
     });
 
 

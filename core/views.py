@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 import os
 
+from django.contrib.auth.decorators import login_required
+
 import openai
 import speech_recognition as sr
 
@@ -19,9 +21,10 @@ openai.api_key = os.environ.get("API_KEY")
 
 def home(request):
     
-    return redirect('/chitchat')
+    return render(request, './core/home.html')
 
 
+@login_required(login_url="/auth/login")
 def chitchat(request):
     try:
         query = result = ""
@@ -115,6 +118,7 @@ def chitchat(request):
     return render(request, './core/chitchat.html', context)
 
 
+@login_required(login_url="/auth/login")
 def codegenie(request):
     try:
         context = {
@@ -163,6 +167,7 @@ def codegenie(request):
     return render(request, "./core/codegenie.html", context)
 
 
+@login_required(login_url="/auth/login")
 def artiflex(request):
     try:
         context = {

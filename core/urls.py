@@ -4,7 +4,7 @@ from .views import *
 
 urlpatterns = [
     path('', home, name="home"),
-    path('chitchat', chitchat, name="chitchat"),
-    path('codegenie', codegenie, name="codegenie"),
-    path('artiflex', artiflex, name="artiflex"),
+    path('product/chitchat/', chitchat, name="chitchat"),
+    path('product/codegenie/', codegenie, name="codegenie"),
+    path('product/artiflex/', artiflex, name="artiflex"),
 ]
