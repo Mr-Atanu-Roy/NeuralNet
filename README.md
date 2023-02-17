@@ -82,14 +82,14 @@ Install dependencies :
   pip install -r requirements.txt
 
 ```
-To migrate the database run migrations commands(not necessary for this project) :
+To migrate the database run migrations commands :
 ```bash
   py manage.py magemigrations
   py manage.py migrate
 
 ```
 
-Create a super user(not necessary for this project) :
+Create a super user :
 ```bash
   py manage.py createsuperuser
 
